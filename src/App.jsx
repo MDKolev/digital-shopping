@@ -5,6 +5,7 @@ import Category from "./pages/Category";
 import Product from "./pages/Product";
 import Cart from "./pages/Cart";
 import Login from "./pages/Login";
+import Footer from "./components/Footer";
 
 export default function App() {
   return (
@@ -22,6 +23,8 @@ export default function App() {
           <Route path="/cart" element={<Cart/>}></Route>
           <Route path="/login" element={<Login/>}></Route>
         </Routes>
+
+        <Footer></Footer>
       </BrowserRouter>
     </main>
   );
