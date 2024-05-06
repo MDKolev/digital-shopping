@@ -50,8 +50,8 @@ const Footer = () => {
             </div>
           </div>
         </div>
-        <div className="border bg-gray-20">
-          <p className="text-center regular-14 text-gray-30">
+        <div className="border bg-gray-20 flexCenter">
+          <p className="text-center regular-14 text-white">
             2024 Shoppee | All rights reserved.{" "}
           </p>
         </div>

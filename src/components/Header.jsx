@@ -15,7 +15,7 @@ const Header = () => {
   };
 
   return (
-    <header className="fixed top-0 left-0 m-auto max_padd_container w-full bg-white ring-1 ring-slate-900/5 z-10">
+    <header className="fixed top-0 left-0 m-auto w-full bg-white ring-1 ring-slate-900/5 z-10">
       <div className="px-4 flexBetween py-3 max-xs:px-2 ">
         {/* logo */}
         <div>
@@ -61,7 +61,7 @@ const Header = () => {
 
             <NavLink
               to={"logout"}
-              className={"btn_secondary_rounded flexCenter gap-x-2 medium-16 hidden"}
+              className={"hidden btn_secondary_rounded gap-x-2 medium-16"}
             >
               <img src={logout} alt="logout" height={19} width={19} />
               Logout
