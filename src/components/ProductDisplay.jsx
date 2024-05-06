@@ -1,11 +1,14 @@
+import { ShopContext } from "../Context/ShopContext";
 import product_rt_1 from "../assets/product_rt_1.png";
 import product_rt_2 from "../assets/product_rt_2.png";
 import product_rt_3 from "../assets/product_rt_3.png";
 import product_rt_4 from "../assets/product_rt_4.png";
 import { MdStar } from "react-icons/md";
+import { useContext } from "react";
 
 const ProductDisplay = (props) => {
   const { product } = props;
+  const { addToCart } = useContext(ShopContext);
 
   return (
     <section>
@@ -39,17 +42,35 @@ const ProductDisplay = (props) => {
           <div className="mb-4">
             <h4 className="bold-16">Select Size:</h4>
             <div className="flex gap-3 my-3">
-                <div className="ring-2 ring-slate-900  h-10 w-10 flexenter cursor-pointer">S</div>
-                <div className="ring-2 ring-slate-900/10  h-10 w-10 flexenter cursor-pointer">M</div>
-                <div className="ring-2 ring-slate-900/10  h-10 w-10 flexenter cursor-pointer">L</div>
-                <div className="ring-2 ring-slate-900/10  h-10 w-10 flexenter cursor-pointer">XL</div>
+              <div className="ring-2 ring-slate-900  h-10 w-10 flexenter cursor-pointer">
+                S
+              </div>
+              <div className="ring-2 ring-slate-900/10  h-10 w-10 flexenter cursor-pointer">
+                M
+              </div>
+              <div className="ring-2 ring-slate-900/10  h-10 w-10 flexenter cursor-pointer">
+                L
+              </div>
+              <div className="ring-2 ring-slate-900/10  h-10 w-10 flexenter cursor-pointer">
+                XL
+              </div>
             </div>
             <div className="flex flex-col gap-y-3 mb-4 max-w-[555px]">
-                <button className="btn_dark_outline !rounded-none uppercase regular-14 tracking-widest">Add to cart</button>
-                <button className="btn_dark_rounded !rounded-none uppercase regular-14 tracking-widest">Buy now</button>
+              <button onClick={() => {addToCart(product.id)}} className="btn_dark_outline !rounded-none uppercase regular-14 tracking-widest">
+                Add to cart
+              </button>
+              <button className="btn_dark_rounded !rounded-none uppercase regular-14 tracking-widest">
+                Buy now
+              </button>
             </div>
-            <p><span className="medium-16 text-tertiary">Category: </span> Women | Jacket | Winter </p>
-            <p><span className="medium-16 text-tertiary">Tags: </span> Modern | Latest </p>
+            <p>
+              <span className="medium-16 text-tertiary">Category: </span> Women
+              | Jacket | Winter{" "}
+            </p>
+            <p>
+              <span className="medium-16 text-tertiary">Tags: </span> Modern |
+              Latest{" "}
+            </p>
           </div>
         </div>
       </div>
