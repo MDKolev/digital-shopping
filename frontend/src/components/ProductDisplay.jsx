@@ -25,6 +25,7 @@ const ProductDisplay = (props) => {
             <img src={product.image} alt="" />
           </div>
         </div>
+
         {/* right side */}
         <div className="flex-col flex xl:flex-[1.7]">
           <h3 className="h3">{product.name}</h3>
@@ -56,7 +57,12 @@ const ProductDisplay = (props) => {
               </div>
             </div>
             <div className="flex flex-col gap-y-3 mb-4 max-w-[555px]">
-              <button onClick={() => {addToCart(product.id)}} className="btn_dark_outline !rounded-none uppercase regular-14 tracking-widest">
+              <button
+                onClick={() => {
+                  addToCart(product.id);
+                }}
+                className="btn_dark_outline !rounded-none uppercase regular-14 tracking-widest"
+              >
                 Add to cart
               </button>
               <button className="btn_dark_rounded !rounded-none uppercase regular-14 tracking-widest">
