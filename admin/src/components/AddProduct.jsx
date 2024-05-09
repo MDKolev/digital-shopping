@@ -20,7 +20,7 @@ const AddProduct = () => {
     setProductDetails({ ...productDetails, [e.target.name]: e.target.value });
   };
 
-  const add_product = async () => {
+  const Add_Product = async () => {
     console.log(productDetails);
     let responseData;
     let product = productDetails;
@@ -125,7 +125,7 @@ const AddProduct = () => {
         />
       </div>
       <button
-        onClick={() => add_product()}
+        onClick={() => Add_Product()}
         className="btn_dark_rounded mt-4 flexCenter gap-x-1"
       >
         <MdAdd /> Add Product
