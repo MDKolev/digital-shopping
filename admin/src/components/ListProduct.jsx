@@ -1,26 +1,25 @@
-import { useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { TbTrash } from "react-icons/tb";
 
 const ListProduct = () => {
-  const [allProducts, setAllProducts] = useState([]);
+  const [allproducts, setAllproducts] = useState([]);
 
   const fetchInfo = async () => {
     await fetch("http://localhost:4000/allproducts")
       .then((res) => res.json())
       .then((data) => {
-        setAllProducts(data);
+        setAllproducts(data);
       });
-      console.log("fetched")
   };
 
   const remove_product = async (id) => {
-    await fetch("http://localhost:400/removeproduct", {
-      method: "POST",
+    await fetch('http://localhost:4000/removeproduct', {
+      method: 'POST',
       headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ id: id }),
+      body: JSON.stringify({id}),
     });
     await fetchInfo();
   };
@@ -45,7 +44,7 @@ const ListProduct = () => {
             </tr>
           </thead>
           <tbody>
-            {allProducts.map((product, i) => {
+            {allproducts.map((product, i) => (
               <tr
                 key={i}
                 className="border-b border-slate-900/20 text-gray-20 p-6 medium-14"
@@ -53,7 +52,7 @@ const ListProduct = () => {
                 <td className="flexStart sm:flexCenter">
                   <img
                     src={product.image}
-                    alt=""
+                    alt="prdctImg"
                     height={43}
                     width={43}
                     className="rounded-lg 
@@ -68,11 +67,11 @@ const ListProduct = () => {
                 <td>{product.category}</td>
                 <td>
                   <div className="bold-22 pl-6 sm:pl-14">
-                    <TbTrash onClick={() => remove_product(product.id)} />
+                    <TbTrash onClick={() => remove_product(product.id)} className="cursor-pointer" />
                   </div>
                 </td>
-              </tr>;
-            })}
+              </tr>
+            ))}
           </tbody>
         </table>
       </div>
