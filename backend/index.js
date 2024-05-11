@@ -141,14 +141,14 @@ const User = mongoose.model('User', {
 })
 
 // Creating endpoint for registering the user
-app.post('/signup', async(req,res) => {
-    let check = await User.findOne({email: req.body.email});
-    if(check) {
-        return res.status(400).json({success: false, errors: "Existing user found with same email address"});
+app.post('/signup', async (req, res) => {
+    let check = await User.findOne({ email: req.body.email });
+    if (check) {
+        return res.status(400).json({ success: false, errors: "Existing user found with same email address" });
     }
 
     let cart = {};
-    for (let i=0; i<300; i++) {
+    for (let i = 0; i < 300; i++) {
         cart[i] = 0;
     }
     const user = new User({
@@ -166,27 +166,27 @@ app.post('/signup', async(req,res) => {
     }
 
     const token = jwt.sign(data, 'secret_ecom');
-    res.json({success: true, token})
+    res.json({ success: true, token })
 })
 
 // creating endpoint for use login
 app.post('/login', async (req, res) => {
-    let user = await User.findOne({email:req.body.email});
-    if(user) {
+    let user = await User.findOne({ email: req.body.email });
+    if (user) {
         const passwordMatch = req.body.password === user.password;
-        if(passwordMatch) {
+        if (passwordMatch) {
             const data = {
                 user: {
                     id: user.id
                 }
             }
             const token = jwt.sign(data, 'secret_ecom')
-            res.json({success: true, token})
+            res.json({ success: true, token })
         } else {
-            res.json({success: false, errors:"Wrong Password"})
+            res.json({ success: false, errors: "Wrong Password" })
         }
     } else {
-        res.json({success: false, errors:"Wrong Email address"})
+        res.json({ success: false, errors: "Wrong Email address" })
     }
 })
 
@@ -199,8 +199,8 @@ app.get('/newcollection', async (req, res) => {
 })
 
 // creating endpoint for popular products
-app.get('/popularproducts', async (req,res) => {
-    let products = await Product.find({category: "men"});
+app.get('/popularproducts', async (req, res) => {
+    let products = await Product.find({ category: "men" });
     let popularProducts = products.slice(0, 4);
     console.log("Popular products fetched");
     res.send(popularProducts)
@@ -210,15 +210,15 @@ app.get('/popularproducts', async (req,res) => {
 // creating middlewear to fetch user 
 const fetchUser = async (req, res, next) => {
     const token = req.header('auth-token');
-    if(!token) {
-        res.status(401).send({errors: "Please authenticate using valid login"})
+    if (!token) {
+        res.status(401).send({ errors: "Please authenticate using valid login" })
     } else {
         try {
             const data = jwt.verify(token, 'secret_ecom')
             req.user = data.user;
             next();
         } catch (error) {
-            res.status(401).send({errors: "Please authenticate using a valid token"})
+            res.status(401).send({ errors: "Please authenticate using a valid token" })
         }
     }
 }
@@ -226,10 +226,19 @@ const fetchUser = async (req, res, next) => {
 
 // creating endpoint for adding products in cartdata
 app.post('/addtocart', fetchUser, async (req, res) => {
-    let userData = await User.findOne({_id: req.user.id})
-    userData.cartData[req.body.itemId] +=1;
-    await User.findOneAndUpdate({_id:req.user.id}, {cartData:userData.cartData})
+    let userData = await User.findOne({ _id: req.user.id })
+    userData.cartData[req.body.itemId] += 1;
+    await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData })
     res.send("Added")
+})
+
+// creating endpoint for removing cartdata
+app.post('/removefromcart', fetchUser, async (req, res) => {
+    let userData = await User.findOne({ _id: req.user.id });
+    if (userData.cartData[res.body.itemID] > 0)
+        userData.cartData[req.body.itemId] -= 1;
+    await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
+    res.send("Removed");
 })
 
 
