@@ -131,7 +131,7 @@ const User = mongoose.model('User', {
     password: {
         type: String,
     },
-    carData: {
+    cartData: {
         type: Object,
     },
     date: {
@@ -206,7 +206,10 @@ app.get('/popularproducts', async (req,res) => {
     res.send(popularProducts)
 })
 
-
+// creating endpoint for adding products in cartdata
+app.post('/addtocart', async (req, res) => {
+    console.log(req.body)
+})
 
 app.listen(port, (error) => {
     if (!error) {
