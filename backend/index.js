@@ -194,8 +194,19 @@ app.post('/login', async (req, res) => {
 app.get('/newcollection', async (req, res) => {
     let products = await Product.find({});
     let newCollection = products.slice(1).slice(-8);
+    console.log("New collection fetched")
     res.send(newCollection)
 })
+
+// creating endpoint for popular products
+app.get('/popularproducts', async (req,res) => {
+    let products = await Product.find({category: "men"});
+    let popularProducts = products.slice(0, 4);
+    console.log("Popular products fetched");
+    res.send(popularProducts)
+})
+
+
 
 app.listen(port, (error) => {
     if (!error) {
