@@ -63,7 +63,7 @@ const Header = () => {
             </NavLink>
 
             {localStorage.getItem('auth-token') ? <NavLink onClick={() => {localStorage.removeItem('auth-token'); window.location.replate("/")}}
-              to={"logout"}
+              to={""}
               className={"btn_secondary_rounded flexCenter gap-x-2 medium-16"}
             >
               <img src={logout} alt="logout" height={19} width={19} />
