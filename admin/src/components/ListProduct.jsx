@@ -5,7 +5,7 @@ const ListProduct = () => {
   const [allproducts, setAllproducts] = useState([]);
 
   const fetchInfo = async () => {
-    await fetch("https://digital-shopping.onrender.com/allproducts")
+    await fetch("https://digital-shopping-sybz.onrender.comallproducts")
       .then((res) => res.json())
       .then((data) => {
         setAllproducts(data);
@@ -13,13 +13,13 @@ const ListProduct = () => {
   };
 
   const remove_product = async (id) => {
-    await fetch('https://digital-shopping.onrender.com/removeproduct', {
-      method: 'POST',
+    await fetch("https://digital-shopping-sybz.onrender.comremoveproduct", {
+      method: "POST",
       headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
+        Accept: "application/json",
+        "Content-Type": "application/json",
       },
-      body: JSON.stringify({id}),
+      body: JSON.stringify({ id }),
     });
     await fetchInfo();
   };
@@ -67,7 +67,10 @@ const ListProduct = () => {
                 <td>{product.category}</td>
                 <td>
                   <div className="bold-22 pl-6 sm:pl-14">
-                    <TbTrash onClick={() => remove_product(product.id)} className="cursor-pointer" />
+                    <TbTrash
+                      onClick={() => remove_product(product.id)}
+                      className="cursor-pointer"
+                    />
                   </div>
                 </td>
               </tr>

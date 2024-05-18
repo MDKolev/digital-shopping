@@ -15,7 +15,7 @@ const Login = () => {
   const login = async () => {
     console.log("Login function executed", formData);
     let responseData;
-    await fetch("https://digital-shopping.onrender.com/login", {
+    await fetch("https://digital-shopping-sybz.onrender.comlogin", {
       method: "POST",
       headers: {
         Accept: "application/formData",
@@ -37,7 +37,7 @@ const Login = () => {
   const signup = async () => {
     console.log("signup function executed", formData);
     let responseData;
-    await fetch("https://digital-shopping.onrender.com/signup", {
+    await fetch("https://digital-shopping-sybz.onrender.comsignup", {
       method: "POST",
       headers: {
         Accept: "application/formData",

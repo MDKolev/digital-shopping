@@ -15,11 +15,11 @@ const ShopContextProvider = (props) => {
   const [all_products, setAll_products] = useState([]);
 
   useEffect(() => {
-    fetch("https://digital-shopping.onrender.com/allproducts")
+    fetch("https://digital-shopping-sybz.onrender.comallproducts")
       .then((response) => response.json())
       .then((data) => setAll_products(data));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://digital-shopping.onrender.com/getcart", {
+      fetch("https://digital-shopping-sybz.onrender.comgetcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -36,7 +36,7 @@ const ShopContextProvider = (props) => {
   const addToCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://digital-shopping.onrender.com/addtocart", {
+      fetch("https://digital-shopping-sybz.onrender.comaddtocart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
@@ -53,7 +53,7 @@ const ShopContextProvider = (props) => {
   const removeFromCart = (itemId) => {
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
     if (localStorage.getItem("auth-token")) {
-      fetch("https://digital-shopping.onrender.com/removefromcart", {
+      fetch("https://digital-shopping-sybz.onrender.comremovefromcart", {
         method: "POST",
         headers: {
           Accept: "application/form-data",
