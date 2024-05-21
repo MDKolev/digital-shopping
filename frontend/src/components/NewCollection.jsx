@@ -5,7 +5,7 @@ const NewCollection = () => {
   const [new_collection, setNew_collection] = useState([]);
 
   useEffect(() => {
-    fetch("https://digital-shopping-sybz.onrender.comnewcollections")
+    fetch("https://digital-shopping-sybz.onrender.com/newcollections")
       .then((response) => response.json())
       .then((data) => setNew_collection(data));
   }, []);

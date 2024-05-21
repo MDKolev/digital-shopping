@@ -235,30 +235,30 @@ const fetchUser = async (req, res, next) => {
 
 // creating endpoint for adding products in cartdata
 app.post("/addtocart", fetchUser, async (req, res) => {
-    console.log("Added", req.body.itemId)
+  console.log("Added", req.body.itemId)
   let userData = await User.findOne({ _id: req.user.id });
   userData.cartData[req.body.itemId] += 1;
-  await User.findOneAndUpdate({ _id: req.user.id },{ cartData: userData.cartData });
+  await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData });
   res.send("Added");
 });
 
 // creating endpoint for removing cartData
 app.post("/removefromcart", fetchUser, async (req, res) => {
-    console.log("Removed", req.body.itemId)
+  console.log("Removed", req.body.itemId)
   let userData = await User.findOne({ _id: req.user.id });
   if (userData.cartData[req.body.itemId] > 0)
     userData.cartData[req.body.itemId] -= 1;
-    await User.findOneAndUpdate({ _id: req.user.id },{ cartData: userData.cartData }
+  await User.findOneAndUpdate({ _id: req.user.id }, { cartData: userData.cartData }
   );
   res.send("Removed");
 });
 
 // creating endpoint to get cart data
 
-app.post('/getcart', fetchUser, async(req, res)=> {
-    console.log('Get cart');
-    let userData = await User.findOne({_id: req.user.id});
-    res.json(userData.cartData);
+app.post('/getcart', fetchUser, async (req, res) => {
+  console.log('Get cart');
+  let userData = await User.findOne({ _id: req.user.id });
+  res.json(userData.cartData);
 })
 
 
