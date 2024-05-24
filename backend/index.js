@@ -12,7 +12,7 @@ app.use(cors());
 
 // Datatbase connection with mongodb
 mongoose.connect(
-  "mongodb://ecommerceMern:user123@ac-sengp1s-shard-00-00.k1srvs8.mongodb.net:27017,ac-sengp1s-shard-00-01.k1srvs8.mongodb.net:27017,ac-sengp1s-shard-00-02.k1srvs8.mongodb.net:27017/ecommerce-mern?ssl=true&replicaSet=atlas-hyka1c-shard-0&authSource=admin&retryWrites=true&w=majority"
+  "mongodb+srv://ecomshop:user123@cluster0.j2j3mfl.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
 );
 
 // Api creation
