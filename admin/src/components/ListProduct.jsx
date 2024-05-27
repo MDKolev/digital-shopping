@@ -5,7 +5,7 @@ const ListProduct = () => {
   const [allproducts, setAllproducts] = useState([]);
 
   const fetchInfo = async () => {
-    await fetch("https://digital-shopping-sybz.onrender.com/allproducts")
+    await fetch("http://localhost:4000/allproducts")
       .then((res) => res.json())
       .then((data) => {
         setAllproducts(data);
@@ -13,7 +13,7 @@ const ListProduct = () => {
   };
 
   const remove_product = async (id) => {
-    await fetch("https://digital-shopping-sybz.onrender.com/removeproduct", {
+    await fetch("http://localhost:4000/removeproduct", {
       method: "POST",
       headers: {
         Accept: "application/json",
